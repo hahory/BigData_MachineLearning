@@ -37,3 +37,29 @@ for idx, answer in enumerate(label):
     if p==answer:ok+=1
     total+=1
 print('정답률:', ok, '/', total, '=', ok/total)
+------------------------------------------------------------------------------------------------
+from cProfile import label
+import pandas as pd
+from sklearn import svm, metrics
+
+#XOR 연산
+xor_input=[
+    [0,0,0],
+    [0,1,1],
+    [1,0,1],
+    [1,1,0]
+]
+
+#입력을 학습전용 데이터와 테스트전용 데이터로 분류하기
+xor_df=pd.DataFrame(xor_input)
+xor_data=xor_df.loc[:,0:1]
+xor_label=xor_df.loc[:,2]
+
+#데이터 학습과 예측하기
+clf=svm.SVC()
+clf.fit(xor_data,xor_label)
+pre=clf.predict(xor_data)
+
+#정답률구하기
+ac_score=metrics.accuracy_score(xor_label,pre)
+print('정답률=', ac_score)
