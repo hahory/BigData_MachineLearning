@@ -1,0 +1,39 @@
+from cProfile import label
+from sklearn import svm
+
+#XOR의 계산 결과 데이터
+xor_data=[
+    #P,Q,result
+    [0,0,0],
+    [0,1,1],
+    [1,0,1],
+    [1,1,0]
+]
+
+#학습을 위해 데이터와 레이블을 분리하기
+data=[]
+label=[]
+for row in xor_data:
+    p=row[0]
+    q=row[1]
+    r=row[2]
+    data.append([p,q])
+    label.append(r)
+
+#데이터 학습시키기
+#SVM이라는 알고리즘을 사용해서 머신러닝을 수행할 것이기에 SVM 객체 만들기
+clf=svm.SVC()
+clf.fit(data, label)
+
+#데이터 예측하기
+pre=clf.predict(data)
+print('예측결과:', pre)
+
+#결과 확인하기
+# enumerate() 함수는 인자로 넘어온 목록을 기준으로 인덱스와 원소를 차례대로 접근하게 해주는 반복자(iterator) 객체를 반환해주는 함수
+ok=0; total=0
+for idx, answer in enumerate(label):
+    p=pre[idx]
+    if p==answer:ok+=1
+    total+=1
+print('정답률:', ok, '/', total, '=', ok/total)
