@@ -75,8 +75,6 @@ to_csv('t10k',500)
 ---------------------------------------------------------------
 #mnist-train.py
 
-from cProfile import label
-from regex import P
 from sklearn import model_selection,svm,metrics
 
 #csv파일을 읽어 들이고 가공하기
