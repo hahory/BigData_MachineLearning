@@ -15,6 +15,7 @@ files=[
 ]
 
 #다운로드
+#urlretrieve 함수를 통해 바로 파일에 자료를 입력할 수 있음
 if not os.path.exists(savepath):os.mkdir(savepath)
 for f in files:
     url=baseurl+'/'+f
