@@ -1,0 +1,15 @@
+import tensorflow as tf
+
+a=tf.constant(2)
+b=tf.constant(3)
+c=tf.constant(4)
+
+calc1_op=a+b*c
+calc2_op=(a+b)*c
+
+#tensorflow 2.0이상에서는 더이상 Session()메서드로 session을 시작하고 run()메서드로 계산하는 과정을 거치지 않음(tf.print를 통해 시작-계산-출력까지 한번에 이뤄짐)
+# sess=tf.Session()
+# res1=sess.run(calc1_op)
+tf.print(calc1_op)
+# res2=sess.run(calc2_op)
+tf.print(calc2_op)
