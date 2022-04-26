@@ -7,9 +7,32 @@ c=tf.constant(4)
 calc1_op=a+b*c
 calc2_op=(a+b)*c
 
+--------------------------------------------------------------------------------
+
 #tensorflow 2.0이상에서는 더이상 Session()메서드로 session을 시작하고 run()메서드로 계산하는 과정을 거치지 않음(tf.print를 통해 시작-계산-출력까지 한번에 이뤄짐)
 # sess=tf.Session()
 # res1=sess.run(calc1_op)
 tf.print(calc1_op)
 # res2=sess.run(calc2_op)
 tf.print(calc2_op)
+
+=======================================================================================================
+import tensorflow as tf
+#상수정의하기
+a=tf.constant(120, name='a')
+b=tf.constant(130, name='b')
+c=tf.constant(140, name='c')
+#변수 및 데이터플로우 그래프 정의하기
+calc_op=a+b+c
+assign_op=tf.Variable(calc_op)
+#출력하기
+tf.print(assign_op)
+#--------------------------------------------------------------------------
+#tf 1.0대 버전에서(2.0대에서는 assign()이 없어짐-변수를 정의할 필요없이 Variable()에 매개변수로 연산식을 넣어주면 됨)
+#변수정의하기
+#v=tf.Variable(0, name='v')
+#데이터플로우그래프 정의하기
+# calc_op=a+b+c
+# assign_op=tf.assign(v,calc_op)
+# #v의 내용 출력하기
+# tf.print(assign_op)
